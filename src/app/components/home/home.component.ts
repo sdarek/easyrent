@@ -10,8 +10,17 @@ export class HomeComponent {
 
   constructor(private router: Router) { }
 
-  logOut() {
-    sessionStorage.clear();
-    this.router.navigate(['login']);
+  redirectToLogin() {
+    this.router.navigate(['/login']);
+  }
+  returnHome() {
+    this.router.navigate(['/home']);
+  }
+
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   }
 }

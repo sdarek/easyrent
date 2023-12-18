@@ -14,13 +14,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
+import { RenterComponent } from './components/renter/renter.component';
+import { OwnerComponent } from './components/owner/owner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    RenterComponent,
+    OwnerComponent
   ],
   imports: [
     BrowserModule,
