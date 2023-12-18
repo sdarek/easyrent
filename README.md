@@ -8,6 +8,7 @@
 - Angular 16
 - NodeJS
 - npm
+- Docker
 
 **Note:** Instructions are for Linux; Windows setup may vary.
 
@@ -16,9 +17,11 @@
 ```git clone https://github.com/mshestalyuk/easyrent.git```
 2. **Navigate to the directory:**  
 ```cd easyrent/```
-3. **Start the application:**  
-```ng serve –open```  
-This will open the app in the browser at http://localhost:4200/.  
+3. **Build docker file:**  
+```docker-compose build```
+4. **Start docker file:**  
+```docker-compose up```  
+This will open the app in the browser at http://localhost:8080/.  
 However, JSON server needs to be enabled for full functionality.
 5. **Install JSON Server:**  
 ```npm install -g json-server```
