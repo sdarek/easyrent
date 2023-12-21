@@ -16,11 +16,17 @@ export class HomeComponent {
   returnHome() {
     this.router.navigate(['/home']);
   }
-
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   scrollToSection(sectionId: string) {
     const element = document.getElementById(sectionId);
+    const offset = 80;
+  
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: elementTop - offset, behavior: 'smooth' });
     }
   }
+  
 }
