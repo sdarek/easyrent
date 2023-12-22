@@ -4,6 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY . .
 RUN npm ci
+RUN npm install animejs
 RUN npm run build --prod
 
 # Stage 2: Serwowanie aplikacji za pomocą Nginx
