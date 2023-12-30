@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { LoginDetails } from 'src/app/interfaces/logindetails';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,9 +12,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    username: ['', [Validators.required, Validators.email]], // Changed 'email' to 'username'
     password: ['', Validators.required]
-  })
+  });
 
   constructor(
     private fb: FormBuilder,
@@ -22,26 +23,33 @@ export class LoginComponent {
     private msgService: MessageService
   ) { }
 
-  get email() {
-    return this.loginForm.controls['email'];
+  get username() {
+    return this.loginForm.controls['username'];
   }
-  get password() { return this.loginForm.controls['password']; }
+  get password() {
+    return this.loginForm.controls['password'];
+  }
 
   loginUser() {
-    const { email, password } = this.loginForm.value;
-    this.authService.getUserByEmail(email as string).subscribe(
-      response => {
-        if (response.length > 0 && response[0].password === password) {
-          sessionStorage.setItem('email', email as string);
+    if (this.loginForm.valid) {
+      // Ensure that the values are strings. If for any reason they are not, default to an empty string
+      const loginPayload: LoginDetails = {
+        username: this.loginForm.value.username || '',
+        password: this.loginForm.value.password || ''
+      };
+  
+      this.authService.loginUser(loginPayload).subscribe(
+        response => {
+          sessionStorage.setItem('username', loginPayload.username);
           this.router.navigate(['/home']);
-        } else {
-          this.msgService.add({ severity: 'error', summary: 'Error', detail: 'email or password is wrong' });
+        },
+        error => {
+          this.msgService.add({ severity: 'error', summary: 'Error', detail: 'Login failed. Please check your credentials.' });
         }
-      },
-      error => {
-        this.msgService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
-      }
-
-    )
+      );
+    } else {
+      this.msgService.add({ severity: 'error', summary: 'Error', detail: 'Please enter valid username and password.' });
+    }
   }
+  
 }

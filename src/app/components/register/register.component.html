@@ -1,23 +1,44 @@
 <form [formGroup]="registerForm" (ngSubmit)="submitDetails()">
   <p-card header="Register" [style]="{ width: '360px' }">
+
     <div class="field">
-      <label for="fullName">FullName</label>
+      <label for="name">Name</label>
       <input
         type="text"
         pInputText
-        formControlName="fullName"
+        formControlName="name"
         class="w-full"
-        name="fullName"
+        name="name"
         placeholder="Type your name"
       />
       <small
-        *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
+        *ngIf="name.invalid && (name.dirty || name.touched)"
         class="block p-error"
       >
-        <div *ngIf="fullName.errors?.['required']">Name is required.</div>
-        <div *ngIf="fullName.errors?.['pattern']">Enter a valid Name</div>
+        <div *ngIf="name.errors?.['required']">Name is required.</div>
+        <div *ngIf="name.errors?.['pattern']">Enter a valid Name</div>
       </small>
     </div>
+
+    <div class="field">
+      <label for="surname">Surname</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="surname"
+        class="w-full"
+        name="surname"
+        placeholder="Type your surname"
+      />
+      <small
+        *ngIf="surname.invalid && (surname.dirty || surname.touched)"
+        class="block p-error"
+      >
+        <div *ngIf="surname.errors?.['required']">surname is required.</div>
+        <div *ngIf="surname.errors?.['pattern']">Enter a valid surname</div>
+      </small>
+    </div>
+
     <div class="field">
       <label for="email">Email</label>
       <input
@@ -36,6 +57,64 @@
         <div *ngIf="email.errors?.['email']">Email should be valid</div>
       </small>
     </div>
+
+    <div class="field">
+      <label for="contact_email">Contact Email</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="contact_email"
+        class="w-full"
+        name="contact_email"
+        placeholder="Type your contact_email"
+      />
+      <small
+        *ngIf="contact_email.invalid && (contact_email.dirty || contact_email.touched)"
+        class="block p-error"
+      >
+        <div *ngIf="email.errors?.['required']">Email is required.</div>
+        <div *ngIf="email.errors?.['contact_email']">Email should be valid</div>
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="phone">Phone</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="phone_number"
+        class="w-full"
+        name="phone_number"
+        placeholder="Type your phone number"
+      />
+      <small
+        *ngIf="phone_number.invalid && (phone_number.dirty || phone_number.touched)"
+        class="block p-error"
+      >
+        <div *ngIf="email.errors?.['required']">Phone is required.</div>
+        <div *ngIf="email.errors?.['phone_number']">Phone should be valid</div>
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="role">Role</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="role"
+        class="w-full"
+        name="role"
+        placeholder="Type your role"
+      />
+      <small
+        *ngIf="role.invalid && (role.dirty || role.touched)"
+        class="block p-error"
+      >
+        <div *ngIf="role.errors?.['required']">Role is required.</div>
+        <div *ngIf="role.errors?.['role']">Role should be valid</div>
+      </small>
+    </div>
+
     <div class="field">
       <label for="password">Password</label>
       <input
