@@ -44,4 +44,26 @@ export class LoginComponent {
 
     )
   }
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    const offset = 80;
+  
+    if (element) {
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: elementTop - offset, behavior: 'smooth' });
+    }
+  }
+  redirectToRegister() {
+    this.router.navigate(['/register']);
+  }
+  returnHome() {
+    this.router.navigate(['/home']);
+  }
+  redirectSection(sectionId: string) {
+    this.router.navigate(['/home']);
+
+    setTimeout(() => { // setTimeout aby dać czas na przekierowanie
+      this.scrollToSection(sectionId);
+    }, 100);
+  }
 }

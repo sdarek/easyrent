@@ -1,46 +1,43 @@
-<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-  <p-card header="Login" [style]="{ width: '360px' }">
-    <div class="field">
-      <label for="email">Email</label>
-      <input
-        type="text"
-        pInputText
-        formControlName="email"
-        class="w-full"
-        name="email"
-        placeholder="Type your email"
-      />
-      <small
-        *ngIf="email.invalid && (email.dirty || email.touched)"
-        class="block p-error"
-      >
-        <div *ngIf="email.errors?.['required']">Email is required.</div>
-        <div *ngIf="email.errors?.['email']">Email should be valid</div>
-      </small>
+<!-- home.component.html -->
+
+<div class="login">
+  <div class="background-image"><img src="https://i.ibb.co/MR5ZVpM/obraz-2024-01-03-194212962.png" alt="Background photo"></div>
+  <div class="header">
+    <div class="menu">
+      <div class="logo" (click)="returnHome()">EasyRent</div>
+      <div class="menu-items">
+        <div class="menu-item" (click)="redirectSection('tutorial')">Początek</div>
+        <div class="menu-item" (click)="redirectSection('info')">Informacje</div>
+        <div class="menu-item" (click)="redirectToRegister()">Rejestracja</div>
+      </div>
+      <div class="user-icon">👤</div>
     </div>
-    <div class="field">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        pInputText
-        formControlName="password"
-        class="w-full"
-        name="password"
-        placeholder="Type your password"
-      />
-      <small
-        *ngIf="password.invalid && (password.dirty || password.touched)"
-        class="block p-error"
-      >
-        <div *ngIf="password.errors?.['required']">Password is required.</div>
-      </small>
-    </div>
-    <p-button
-      label="SIGN IN"
-      styleClass="w-full"
-      [disabled]="loginForm.invalid"
-      type="submit"
-    ></p-button>
-    <div class="mt-2">Not a member? <a routerLink="/register">Register</a></div>
-  </p-card>
-</form>
+  </div>
+
+  <div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+      <div class="form-header">
+        <h2>LOGOWANIE</h2>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" formControlName="password" required>
+      </div>
+  
+      <div class="form-group">
+        <button type="submit">Zaloguj się</button>
+      </div>
+  
+      <div class="registration-info">
+        Nie masz konta? <a (click)="redirectToRegister()">Zarejestruj się</a>
+      </div>
+    </form>
+  </div>
+</div>
+
