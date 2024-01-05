@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'owner', component: OwnerComponent, canActivate: [authGuard], data: { roles: ['owner'] } }, 
+  { path: 'owner', loadChildren: () => import('./components/owner/owner.module').then(m => m.OwnerModule) },
   { path: 'tenant', loadChildren: () => import('./components/renter/renter.module').then(m => m.RenterModule) },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

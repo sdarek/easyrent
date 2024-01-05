@@ -17,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
-import { OwnerComponent } from './components/owner/owner.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { OwnerComponent } from './components/owner/owner.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    OwnerComponent
   ],
   imports: [
     BrowserModule,
