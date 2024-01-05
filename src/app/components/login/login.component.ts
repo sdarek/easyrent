@@ -41,7 +41,7 @@ export class LoginComponent {
       this.authService.loginUser(loginPayload).subscribe(
         response => {
           sessionStorage.setItem('username', loginPayload.username);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/tenant']);
         },
         error => {
           this.msgService.add({ severity: 'error', summary: 'Error', detail: 'Login failed. Please check your credentials.' });

@@ -3,11 +3,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RenterComponent } from './renter.component';
-import { RenterAnnouncementsComponent } from '../renter-announcements/renter-announcements.component';
-import { RenterApartmentComponent } from '../renter-apartment/renter-apartment.component';
-import { RenterReportsComponent } from '../renter-reports/renter-reports.component';
-import { RenterAccountComponent } from '../renter-account/renter-account.component';
-import { RenterHelloComponent } from '../renter-hello/renter-hello.component';
+import { RenterAnnouncementsComponent } from './renter-announcements/renter-announcements.component';
+import { RenterApartmentComponent } from './renter-apartment/renter-apartment.component';
+import { RenterReportsComponent } from './renter-reports/renter-reports.component';
+import { RenterAccountComponent } from './renter-account/renter-account.component';
+import { RenterHelloComponent } from './renter-hello/renter-hello.component';
 
 const routes: Routes = [
     {
