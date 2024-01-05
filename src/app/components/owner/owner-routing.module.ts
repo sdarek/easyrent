@@ -20,7 +20,7 @@ const routes: Routes = [
       { path: 'owner-hello', component: OwnerHelloComponent },
       { path: 'owner-reports', component: OwnerReportsComponent },
       { path: 'owner-account', component: OwnerAccountComponent },
-      { path: 'owner-apartment-management', component: OwnerApartmentManagementComponent },
+      { path: 'owner-apartment-management/:id', component: OwnerApartmentManagementComponent },
       { path: '', redirectTo: 'owner-hello', pathMatch: 'full' }
     ]
   }
