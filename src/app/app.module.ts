@@ -1,7 +1,10 @@
+//app.module.ts
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -14,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
-import { RenterComponent } from './components/renter/renter.component';
 import { OwnerComponent } from './components/owner/owner.component';
 
 @NgModule({
@@ -23,12 +25,12 @@ import { OwnerComponent } from './components/owner/owner.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    RenterComponent,
     OwnerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     CardModule,
     InputTextModule,
     ReactiveFormsModule,

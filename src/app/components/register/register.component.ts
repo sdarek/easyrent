@@ -61,6 +61,7 @@ export class RegisterComponent {
   submitDetails() {
     const postData = { ...this.registerForm.value };
     delete postData.confirmPassword;
+    postData.role = "OWNER";
     this.authService.registerUser(postData as User).subscribe(
       response => {
         console.log(response);
