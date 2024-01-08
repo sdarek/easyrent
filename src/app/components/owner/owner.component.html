@@ -1,1 +1,23 @@
-<p>owner works!</p>
+<!-- owner.component.html -->
+
+<div class="owner">
+    <div class="background-image"><img src="https://i.ibb.co/ggF5hkz/owner.png" alt="Background photo"></div>
+    <div class="header">
+      <div class="menu">
+        <div class="logo" routerLink="owner-hello">EasyRent</div>
+        <div class="menu-items">
+          <div class="menu-item" routerLink="owner-announcements">Ogłoszenia</div>
+          <div class="menu-item" routerLink="owner-apartments">Mieszkania</div>
+          <div class="menu-item" routerLink="owner-reports">Zgłoszenia</div>
+          <div class="menu-item" routerLink="owner-account">Konto</div>
+          <div class="menu-item" (click)="logout()">Wyloguj</div>
+        </div>
+        <div class="user-icon">👤</div>
+      </div>
+    </div>
+  
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  

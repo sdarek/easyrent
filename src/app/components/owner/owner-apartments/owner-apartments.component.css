@@ -1,0 +1,17 @@
+.apartments {
+    text-align: center;
+  }
+  
+  .apartment {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .apartment:hover {
+    background-color: #f0f0f0;
+  }
+  
