@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { MessageService } from 'primeng/api';
     ToastModule,
     BrowserAnimationsModule
   ],
-  providers: [MessageService],
+  providers: [MessageService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

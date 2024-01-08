@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { LoginDetails } from 'src/app/interfaces/logindetails';
+import { LoginForm } from 'src/app/interfaces/login-form';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
   loginForm = this.fb.group({
-    username: ['', [Validators.required, Validators.email]], // Changed 'email' to 'username'
+    username: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   });
 
@@ -32,23 +32,25 @@ export class LoginComponent {
 
   loginUser() {
     if (this.loginForm.valid) {
-      // Ensure that the values are strings. If for any reason they are not, default to an empty string
-      const loginPayload: LoginDetails = {
+      const loginPayload: LoginForm = {
         username: this.loginForm.value.username || '',
         password: this.loginForm.value.password || ''
       };
-  
       this.authService.loginUser(loginPayload).subscribe(
-        response => {
-          sessionStorage.setItem('username', loginPayload.username);
-          this.router.navigate(['/tenant']);
+        () => {
+          if (this.authService.isLoggedIn()) {
+            // Przekieruj do odpowiedniego dashboardu na podstawie roli
+            const userType = this.authService.getLoggedInUser()?.role.toLowerCase();
+            this.router.navigate([`${userType}`]);
+            this.msgService.add({ severity: 'success', summary: 'OH YEEES', detail: 'Dobrze ze jestes :)' });
+          }
         },
-        error => {
-          this.msgService.add({ severity: 'error', summary: 'Error', detail: 'Login failed. Please check your credentials.' });
+        (error) => {
+          this.msgService.add({ severity: 'error', summary: 'Glupku', detail: 'Co ty wpisales, wpisz poprawne dane.' });
         }
       );
     } else {
-      this.msgService.add({ severity: 'error', summary: 'Error', detail: 'Please enter valid username and password.' });
+      this.msgService.add({ severity: 'error', summary: 'Glupku', detail: 'Co ty wpisales, wpisz poprawne dane.' });
     }
   }
   scrollToSection(sectionId: string) {

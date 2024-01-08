@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { User } from 'src/app/interfaces/auth';
+import { RegistrationForm } from 'src/app/interfaces/registration-form';
 import { AuthService } from 'src/app/services/auth.service';
 import { passwordMatchValidator } from 'src/app/shared/password-match.directive';
 
@@ -62,14 +62,14 @@ export class RegisterComponent {
     const postData = { ...this.registerForm.value };
     delete postData.confirmPassword;
     postData.role = "OWNER";
-    this.authService.registerUser(postData as User).subscribe(
+    this.authService.registerUser(postData as RegistrationForm).subscribe(
       response => {
         console.log(response);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register successfully' });
+        this.messageService.add({ severity: 'success', summary: 'SUPER', detail: 'Zarejestrowano pomyslnie' });
         this.router.navigate(['login'])
       },
       error => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
+        this.messageService.add({ severity: 'error', summary: 'Glupku', detail: 'Co ty wpisales, wpisz poprawne dane.' });
       }
     )
   }

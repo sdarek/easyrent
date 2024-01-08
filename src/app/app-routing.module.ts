@@ -6,14 +6,14 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { OwnerComponent } from './components/owner/owner.component';
-import { authGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'owner', loadChildren: () => import('./components/owner/owner.module').then(m => m.OwnerModule) },
-  { path: 'tenant', loadChildren: () => import('./components/renter/renter.module').then(m => m.RenterModule) },
+  { path: 'owner', loadChildren: () => import('./components/owner/owner.module').then(m => m.OwnerModule), canActivate: [AuthGuard], data: { userType: 'owner' }  },
+  { path: 'tenant', loadChildren: () => import('./components/renter/renter.module').then(m => m.RenterModule), canActivate: [AuthGuard], data: { userType: 'tenant' }  },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
