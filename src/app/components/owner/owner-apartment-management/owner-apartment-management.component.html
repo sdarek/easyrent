@@ -1,1 +1,50 @@
-<p>owner-apartment-management works!</p>
+<div class="content-container">
+    <div class="apartment-panel">
+      <h2>{{ apartmentName }}</h2>
+      <p>{{ apartmentAddress }}</p>
+      <p><i>{{ note }}</i></p>
+      
+      <div class="tenant-list-container">
+        <h3>Existing Tenants</h3>
+        <ul class="tenant-list">
+          <!-- Dynamically generated tenant list -->
+          <li class="tenant-item">
+            <span class="tenant-name">John Doe</span>
+            <span class="tenant-email">johndoe@example.com</span>
+          </li>
+          <li class="tenant-item">
+            <span class="tenant-name">John Doe</span>
+            <span class="tenant-email">johndoe@example.com</span>
+          </li>
+          <li class="tenant-item">
+            <span class="tenant-name">John Doe</span>
+            <span class="tenant-email">johndoe@example.com</span>
+          </li>
+          <li class="tenant-item">
+            <span class="tenant-name">John Doe</span>
+            <span class="tenant-email">johndoe@example.com</span>
+          </li>
+          <!-- ... Other tenants ... -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="tenant-form-container">
+        <form id="tenantForm">
+            <h3>Add a Tenant</h3>
+            <div class="form-group">
+              <label for="tenantName">Name</label>
+              <input type="text" id="tenantName" placeholder="Tenant's name">
+            </div>
+            <div class="form-group">
+              <label for="tenantEmail">Email</label>
+              <input type="email" id="tenantEmail" placeholder="Tenant's email">
+            </div>
+            <!-- Additional fields as needed -->
+            <div class="form-group">
+              <button type="submit">Add Tenant</button>
+            </div>
+          </form>
+      </div>
+    </div> 
+    
