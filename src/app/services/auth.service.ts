@@ -13,7 +13,7 @@ import { LoginForm } from '../interfaces/login-form';
 })
 export class AuthService {
   private loggedInUser: User | null = null;
-  private baseUrl = 'http://3.70.177.167:81';
+  private baseUrl = 'https://knowyourteacher.online:81';
   private jwtHelper = new JwtHelperService();
 
   constructor(private http: HttpClient) { }
@@ -28,14 +28,12 @@ export class AuthService {
 
   registerUser(userDetails: RegistrationForm) {
     //const endpoint = userDetails.role === 'owner' ? 'register_owner' : 'register_tenant';
-    console.log(userDetails);
     return this.http.post(`${this.baseUrl}/easyrent-api/v1/register_owner`, userDetails);
   }
   
   loginUser(loginForm: LoginForm) {
     const loginEndpoint = `${this.baseUrl}/easyrent-api/v1/login`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.post(loginEndpoint, loginForm, { headers });
     return this.http.post(loginEndpoint, loginForm, { headers }).pipe(
       tap((response: any) => {
         if (response && response.token) {

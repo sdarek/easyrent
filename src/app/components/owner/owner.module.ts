@@ -10,6 +10,7 @@ import { OwnerHelloComponent } from './owner-hello/owner-hello.component';
 import { OwnerReportsComponent } from './owner-reports/owner-reports.component';
 import { OwnerAccountComponent } from './owner-account/owner-account.component';
 import { OwnerApartmentManagementComponent } from './owner-apartment-management/owner-apartment-management.component';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { OwnerApartmentManagementComponent } from './owner-apartment-management/
   ],
   imports: [
     CommonModule,
-    OwnerRoutingModule
+    OwnerRoutingModule,
+    FormsModule
   ]
 })
 export class OwnerModule { }

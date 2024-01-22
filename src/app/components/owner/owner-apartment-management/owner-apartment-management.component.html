@@ -1,50 +1,96 @@
-<div class="content-container">
-    <div class="apartment-panel">
-      <h2>{{ apartmentName }}</h2>
-      <p>{{ apartmentAddress }}</p>
-      <p><i>{{ note }}</i></p>
-      
-      <div class="tenant-list-container">
-        <h3>Existing Tenants</h3>
-        <ul class="tenant-list">
-          <!-- Dynamically generated tenant list -->
-          <li class="tenant-item">
-            <span class="tenant-name">John Doe</span>
-            <span class="tenant-email">johndoe@example.com</span>
-          </li>
-          <li class="tenant-item">
-            <span class="tenant-name">John Doe</span>
-            <span class="tenant-email">johndoe@example.com</span>
-          </li>
-          <li class="tenant-item">
-            <span class="tenant-name">John Doe</span>
-            <span class="tenant-email">johndoe@example.com</span>
-          </li>
-          <li class="tenant-item">
-            <span class="tenant-name">John Doe</span>
-            <span class="tenant-email">johndoe@example.com</span>
-          </li>
-          <!-- ... Other tenants ... -->
-        </ul>
-      </div>
-    </div>
+<!-- owner-apartment-management.component.html -->
+<div class="apartment-management-container">
+  <h1>Szczegóły mieszkania</h1>
 
-    <div class="tenant-form-container">
-        <form id="tenantForm">
-            <h3>Add a Tenant</h3>
-            <div class="form-group">
-              <label for="tenantName">Name</label>
-              <input type="text" id="tenantName" placeholder="Tenant's name">
-            </div>
-            <div class="form-group">
-              <label for="tenantEmail">Email</label>
-              <input type="email" id="tenantEmail" placeholder="Tenant's email">
-            </div>
-            <!-- Additional fields as needed -->
-            <div class="form-group">
-              <button type="submit">Add Tenant</button>
-            </div>
-          </form>
-      </div>
-    </div> 
-    
+  <div class="apartment-details">
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" [(ngModel)]="apartmentDetails.id" disabled>
+
+    <label for="address">Adres:</label>
+    <input type="text" id="address" name="address" [(ngModel)]="apartmentDetails.address">
+
+    <label for="note">Informacje:</label>
+    <textarea id="note" name="note" [(ngModel)]="apartmentDetails.note"></textarea>
+  </div>
+
+  <div class="button-container">
+    <button (click)="updateApartment()">Aktualizuj mieszkanie</button>
+    <button (click)="deleteApartment()">Usuń mieszkanie</button>
+  </div>
+
+  <div *ngIf="rentContracts.length > 0">
+    <h2>Umowy najmu</h2>
+    <ul>
+      <li *ngFor="let rentContract of rentContracts">
+        <button (click)="showRentContractDetails(rentContract)">Umowa #{{ rentContract.id }}</button>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="!rentContractDetails.id">
+    <h2>Dodaj nową umowę najmu</h2>
+    <label for="newConclusionDate">Data zawarcia umowy:</label>
+    <input type="text" id="newConclusionDate" name="newConclusionDate" [(ngModel)]="newRentContractDetails.conclusionDate">
+
+    <label for="newExpiresDate">Data wygaśnięcia umowy:</label>
+    <input type="text" id="newExpiresDate" name="newExpiresDate" [(ngModel)]="newRentContractDetails.expiresDate">
+
+    <label for="newMontPayment">Opłata miesięczna:</label>
+    <input type="text" id="newMontPayment" name="newMontPayment" [(ngModel)]="newRentContractDetails.montPayment">
+
+    <label for="newNote">Notatka:</label>
+    <textarea id="newNote" name="newNote" [(ngModel)]="newRentContractDetails.note"></textarea>
+
+    <button (click)="addRentContract()">Dodaj umowę najmu</button>
+  </div>
+
+  <div *ngIf="rentContractDetails.id">
+    <h2>Umowa najmu</h2>
+    <label for="conclusionDate">Data zawarcia umowy:</label>
+    <input type="text" id="conclusionDate" name="conclusionDate" [(ngModel)]="rentContractDetails.conclusionDate" disabled>
+
+    <label for="expiresDate">Data wygaśnięcia umowy:</label>
+    <input type="text" id="expiresDate" name="expiresDate" [(ngModel)]="rentContractDetails.expiresDate">
+
+    <!-- Dodaj kolejne pola zgodnie z umową najmu -->
+
+    <button (click)="updateRentContract()">Aktualizuj umowę najmu</button>
+    <button (click)="deleteRentContract()">Usuń umowę najmu</button>
+  </div>
+
+  <div *ngIf="tenantDetails.id">
+    <h2>Lokator</h2>
+    <label for="tenantName">Imię:</label>
+    <input type="text" id="tenantName" name="tenantName" [(ngModel)]="tenantDetails.name">
+
+    <label for="tenantSurname">Nazwisko:</label>
+    <input type="text" id="tenantSurname" name="tenantSurname" [(ngModel)]="tenantDetails.surname">
+
+    <label for="tenantEmail">E-mail:</label>
+    <input type="text" id="tenantEmail" name="tenantEmail" [(ngModel)]="tenantDetails.email">
+
+    <label for="tenantPhone">Numer telefonu:</label>
+    <input type="text" id="tenantPhone" name="tenantPhone" [(ngModel)]="tenantDetails.phone">
+
+    <button (click)="updateTenantDetails()">Aktualizuj informacje o lokatorze</button>
+    <button (click)="deleteTenantDetails()">Usuń informacje o lokatorze</button>
+  </div>
+
+  <div *ngIf="!tenantDetails.id">
+    <h2>Dodaj nowego lokatora</h2>
+    <label for="newTenantName">Imię:</label>
+    <input type="text" id="newTenantName" name="newTenantName" [(ngModel)]="newTenantDetails.name">
+  
+    <label for="newTenantSurname">Nazwisko:</label>
+    <input type="text" id="newTenantSurname" name="newTenantSurname" [(ngModel)]="newTenantDetails.surname">
+  
+    <label for="newTenantEmail">E-mail:</label>
+    <input type="text" id="newTenantEmail" name="newTenantEmail" [(ngModel)]="newTenantDetails.email">
+  
+    <label for="newTenantPhone">Numer telefonu:</label>
+    <input type="text" id="newTenantPhone" name="newTenantPhone" [(ngModel)]="newTenantDetails.phone">
+  
+    <button (click)="addTenant()">Dodaj nowego lokatora</button>
+  </div>
+
+</div>
