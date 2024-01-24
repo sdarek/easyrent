@@ -1,7 +1,36 @@
 <!-- owner-apartment-management.component.html -->
+
 <div class="apartment-management-container">
   <h1>Szczegóły mieszkania</h1>
 
+  <!-- New Section for Displaying Apartment Details -->
+  <div class="apartment-display-details">
+    <p><strong>ID:</strong> {{apartmentDetails.id}}</p>
+    <p><strong>Adres:</strong> {{apartmentDetails.address}}</p>
+    <p><strong>Informacje:</strong> {{apartmentDetails.note}}</p>
+  </div>
+
+  <!-- Section for Rent Contracts -->
+<div *ngIf="rentContracts.length > 0">
+  <h2>Umowy najmu</h2>
+  <ul>
+    <li *ngFor="let contract of rentContracts">
+      Umowa #{{ contract.id }}
+      <button (click)="showRentContractDetails(contract)">Pokaż szczegóły umowy</button>
+    </li>
+  </ul>
+</div>
+
+<!-- Section for Tenants -->
+<div *ngIf="tenantDetails.id">
+  <h2>Szczegóły lokatora</h2>
+  <p>Imię: {{ tenantDetails.name }}</p>
+  <p>Nazwisko: {{ tenantDetails.surname }}</p>
+  <!-- Add more tenant details as required -->
+</div>
+  
+  <!-- Existing Section for Updating Apartment Details -->
+  <h2>Aktualizuj informacje o mieszkaniu</h2>
   <div class="apartment-details">
     <label for="id">ID:</label>
     <input type="text" id="id" name="id" [(ngModel)]="apartmentDetails.id" disabled>
@@ -15,7 +44,6 @@
 
   <div class="button-container">
     <button (click)="updateApartment()">Aktualizuj mieszkanie</button>
-    <button (click)="deleteApartment()">Usuń mieszkanie</button>
   </div>
 
   <div *ngIf="rentContracts.length > 0">
@@ -52,8 +80,6 @@
     <label for="expiresDate">Data wygaśnięcia umowy:</label>
     <input type="text" id="expiresDate" name="expiresDate" [(ngModel)]="rentContractDetails.expiresDate">
 
-    <!-- Dodaj kolejne pola zgodnie z umową najmu -->
-
     <button (click)="updateRentContract()">Aktualizuj umowę najmu</button>
     <button (click)="deleteRentContract()">Usuń umowę najmu</button>
   </div>
@@ -77,7 +103,6 @@
   </div>
 
   <div *ngIf="!tenantDetails.id">
-  </div>
     <h2>Zarejestruj nowego lokatora</h2>
     <label for="newTenantName">Imię:</label>
     <input type="text" id="newTenantName" name="newTenantName" [(ngModel)]="newTenantDetails.name">
@@ -89,5 +114,5 @@
     <input type="text" id="newTenantEmail" name="newTenantEmail" [(ngModel)]="newTenantDetails.email">
   
     <button (click)="registerTenant()">Zarejestruj lokatora</button>
-
+  </div>
 </div>

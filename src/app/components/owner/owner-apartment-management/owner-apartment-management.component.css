@@ -54,6 +54,25 @@ h2 {
   margin-bottom: 15px;
 }
 
+/* owner-apartment-management.component.css */
+
+/* ... existing styles ... */
+
+.apartment-display-details {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.apartment-display-details p {
+  margin: 5px 0;
+}
+
+/* ... rest of your existing styles ... */
+
+
 /* Dodatkowe style dla responsywności */
 @media (max-width: 768px) {
   .apartment-management-container {

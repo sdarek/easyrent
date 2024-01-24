@@ -3,8 +3,8 @@
   <div *ngIf="apartments.length > 0; else noApartments">
     <h1>Twoje mieszkania</h1>
     <div *ngFor="let apartment of apartments" class="apartment" (click)="onApartmentClick(apartment.id)">
-      <h2>{{ apartment.id }}</h2>
-      <p>{{ apartment.address }}</p>
+      <h2>Miezkanie</h2>
+      <p>Adresa: {{ apartment.address }}</p>
       <p>Informacje: {{ apartment.note }}</p>
       <button (click)="deleteApartment($event, apartment.id)">Usuń mieszkanie</button>
     </div>

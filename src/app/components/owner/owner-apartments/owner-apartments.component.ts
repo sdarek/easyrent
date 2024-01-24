@@ -13,7 +13,8 @@ import { MessageService } from 'primeng/api';
 export class OwnerApartmentsComponent implements OnInit {
   apartments: any[] = [];
   newApartment: any = { address: '', note: '' };
-
+  rentContracts: any[] = [];
+  tenants: any[] = [];
   constructor(
     private router: Router, 
     private apartmentService: ApartmentService,
@@ -73,3 +74,5 @@ export class OwnerApartmentsComponent implements OnInit {
   }
 
 }
+
+

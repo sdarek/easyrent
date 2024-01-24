@@ -13,6 +13,7 @@ export class ApartmentService {
 
   constructor(private http: HttpClient) { }
 
+  // Apartmant creating managing ---> DONE!
   getApartments(): Observable<any[]> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
@@ -71,6 +72,7 @@ export class ApartmentService {
     );
   }
 
+    // Apartmant creating managing ---> DONE!
   getRentContractDetails(apartmentId: number, contractId: number): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
