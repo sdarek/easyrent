@@ -26,9 +26,10 @@ export class AuthService {
     return this.loggedInUser;
   }
 
-  registerUser(userDetails: RegistrationForm) {
-    //const endpoint = userDetails.role === 'owner' ? 'register_owner' : 'register_tenant';
-    return this.http.post(`${this.baseUrl}/easyrent-api/v1/register_owner`, userDetails);
+  registerUser(userDetails: RegistrationForm): Observable<any> {
+    const endpoint = userDetails.role === 'owner' ? 'register_owner' : 'register_tenant';
+    const url = `${this.baseUrl}/easyrent-api/v1/${endpoint}`;
+    return this.http.post(url, userDetails);
   }
   
   loginUser(loginForm: LoginForm) {

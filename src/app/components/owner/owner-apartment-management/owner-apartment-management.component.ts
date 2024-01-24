@@ -1,7 +1,9 @@
 // owner-apartment-management.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RegistrationForm } from 'src/app/interfaces/registration-form';
 import { ApartmentService } from 'src/app/services/apartment.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -23,6 +25,7 @@ export class OwnerApartmentManagementComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private apartmentService: ApartmentService,
+    private authService: AuthService,
     private msgService: MessageService
   ) { }
 
@@ -158,6 +161,29 @@ export class OwnerApartmentManagementComponent implements OnInit {
       (response: any) => {
         this.msgService.add({ severity: 'success', summary: 'Sukces', detail: 'Lokator dodany pomyślnie' });
         this.getTenantDetails(); // Reload tenant details after adding
+      },
+      (error) => {
+        this.msgService.add({ severity: 'error', summary: 'Błąd', detail: 'Wystąpił błąd podczas dodawania lokatora' });
+      }
+    );
+  }
+
+  registerTenant(): void {
+    // Przykładowe dane dla nowego lokatora
+    const newTenantDetails: RegistrationForm = {
+      name: 'Nowy',
+      surname: 'Lokator',
+      email: 'nowylokator@example.com',
+      password: 'haslo',
+      role: 'tenant',
+      contact_email: 'email@example.com',
+      phone_number: '123456789'
+    };
+  
+    this.authService.registerUser(newTenantDetails).subscribe(
+      (response: any) => {
+        this.msgService.add({ severity: 'success', summary: 'Sukces', detail: 'Lokator dodany pomyślnie' });
+        this.getTenantDetails(); // Ponowne pobranie szczegółów lokatora po dodaniu
       },
       (error) => {
         this.msgService.add({ severity: 'error', summary: 'Błąd', detail: 'Wystąpił błąd podczas dodawania lokatora' });

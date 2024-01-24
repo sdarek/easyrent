@@ -77,7 +77,8 @@
   </div>
 
   <div *ngIf="!tenantDetails.id">
-    <h2>Dodaj nowego lokatora</h2>
+  </div>
+    <h2>Zarejestruj nowego lokatora</h2>
     <label for="newTenantName">Imię:</label>
     <input type="text" id="newTenantName" name="newTenantName" [(ngModel)]="newTenantDetails.name">
   
@@ -87,10 +88,6 @@
     <label for="newTenantEmail">E-mail:</label>
     <input type="text" id="newTenantEmail" name="newTenantEmail" [(ngModel)]="newTenantDetails.email">
   
-    <label for="newTenantPhone">Numer telefonu:</label>
-    <input type="text" id="newTenantPhone" name="newTenantPhone" [(ngModel)]="newTenantDetails.phone">
-  
-    <button (click)="addTenant()">Dodaj nowego lokatora</button>
-  </div>
+    <button (click)="registerTenant()">Zarejestruj lokatora</button>
 
 </div>
