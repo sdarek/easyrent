@@ -1,6 +1,7 @@
 // In renter-apartment.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ApartmentTenantService } from '../../../services/apartment-tenant.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-renter-apartment',
@@ -8,13 +9,19 @@ import { ApartmentTenantService } from '../../../services/apartment-tenant.servi
   styleUrls: ['./renter-apartment.component.css']
 })
 export class RenterApartmentComponent implements OnInit {
-  apartments: any[] = [];
+  apartment: any = null;
 
-  constructor(private apartmentTenantService: ApartmentTenantService) {}
-
+  constructor(
+    private apartmentTenantService: ApartmentTenantService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.apartmentTenantService.getApartments().subscribe((data: any) => {
-      this.apartments = data;
+      this.apartment = data;
     });
+  }
+  redirectToApartmentDetails(apartmentId: number): void {
+    // Assuming the route to the apartment details page is '/apartment-details/:id'
+    this.router.navigate(['/tenant/tenant-apartment-management', apartmentId]);
   }
 }
