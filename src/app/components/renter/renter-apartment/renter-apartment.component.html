@@ -1,16 +1,17 @@
-<div class="apartment">
-<!-- In renter-apartment.component.html -->
-<div *ngFor="let apartment of apartments" class="apartment-details">
-  <h1>Informacje o Mieszkaniu</h1>
+<div class="apartment" *ngIf="apartment" (click)="redirectToApartmentDetails(apartment.id)">
+  <h1>Mieszkanie</h1>
   <div class="details">
-    <img [src]="apartment.imageUrl" alt="Zdjęcie mieszkania" class="apartment-image">
+    <img [src]="apartment.imageUrl ? apartment.imageUrl : 'https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg'" 
+         alt="Zdjęcie mieszkania" 
+         class="apartment-image">    
     <div class="info">
       <div class="detail-item">
         <strong>Adres:</strong> {{apartment.address}}
+      </div>
+      <div class="detail-item">
+        <strong>Notatka:</strong> {{apartment.note}}
       </div>
       <!-- Add other details here -->
     </div>
   </div>
 </div>
-</div>
-  
