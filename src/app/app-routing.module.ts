@@ -14,6 +14,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'owner', loadChildren: () => import('./components/owner/owner.module').then(m => m.OwnerModule), canActivate: [AuthGuard], data: { userType: 'owner' }  },
   { path: 'tenant', loadChildren: () => import('./components/renter/renter.module').then(m => m.RenterModule), canActivate: [AuthGuard], data: { userType: 'tenant' }  },
+  // { path: 'owner', loadChildren: () => import('./components/owner/owner.module').then(m => m.OwnerModule)},
+  // { path: 'tenant', loadChildren: () => import('./components/renter/renter.module').then(m => m.RenterModule)},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

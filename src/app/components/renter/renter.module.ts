@@ -9,6 +9,7 @@ import { RenterApartmentComponent } from './renter-apartment/renter-apartment.co
 import { RenterReportsComponent } from './renter-reports/renter-reports.component';
 import { RenterAccountComponent } from './renter-account/renter-account.component';
 import { RenterHelloComponent } from './renter-hello/renter-hello.component';
+import { RenterApartmentManagementComponent } from './renter-apartment-management/renter-apartment-management.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,9 @@ import { RenterHelloComponent } from './renter-hello/renter-hello.component';
         RenterApartmentComponent,
         RenterReportsComponent,
         RenterAccountComponent,
-        RenterHelloComponent
+        RenterHelloComponent,
+        RenterApartmentManagementComponent
+        
     ],
     imports: [
         CommonModule,

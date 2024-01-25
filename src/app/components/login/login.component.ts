@@ -42,15 +42,15 @@ export class LoginComponent {
             // Przekieruj do odpowiedniego dashboardu na podstawie roli
             const userType = this.authService.getLoggedInUser()?.role.toLowerCase();
             this.router.navigate([`${userType}`]);
-            this.msgService.add({ severity: 'success', summary: 'OH YEEES', detail: 'Dobrze ze jestes :)' });
+            this.msgService.add({ severity: 'success', summary: 'Login success', detail: 'Witaj w EasyRent' });
           }
         },
         (error) => {
-          this.msgService.add({ severity: 'error', summary: 'Glupku', detail: 'Co ty wpisales, wpisz poprawne dane.' });
+          this.msgService.add({ severity: 'error', summary: 'Login error', detail: 'Wpisz poprawne dane.' });
         }
       );
     } else {
-      this.msgService.add({ severity: 'error', summary: 'Glupku', detail: 'Co ty wpisales, wpisz poprawne dane.' });
+      this.msgService.add({ severity: 'error', summary: 'Login erro', detail: 'Wpisz poprawne dane.' });
     }
   }
 

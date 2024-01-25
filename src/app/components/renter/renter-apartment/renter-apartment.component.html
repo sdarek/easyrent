@@ -1,26 +1,17 @@
-<div class="apartment">
-    <div class="apartment-details">
-      <h1>Informacje o Mieszkaniu</h1>
-      <div class="details">
-        <img src="https://i.ibb.co/xyzabc/placeholder-image.jpg" alt="Zdjęcie mieszkania" class="apartment-image">
-        <div class="info">
-          <div class="detail-item">
-            <strong>Adres:</strong> ul. Przykładowa 123
-          </div>
-          <div class="detail-item">
-            <strong>Powierzchnia:</strong> 60 m²
-          </div>
-          <div class="detail-item">
-            <strong>Liczba pokoi:</strong> 3
-          </div>
-          <div class="detail-item">
-            <strong>Cena wynajmu:</strong> 2000 zł/miesiąc
-          </div>
-          <!-- Dodaj więcej informacji o mieszkaniu -->
-        </div>
+<div class="apartment" *ngIf="apartment" (click)="redirectToApartmentDetails(apartment.id)">
+  <h1>Mieszkanie</h1>
+  <div class="details">
+    <img [src]="apartment.imageUrl ? apartment.imageUrl : 'https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg'" 
+         alt="Zdjęcie mieszkania" 
+         class="apartment-image">    
+    <div class="info">
+      <div class="detail-item">
+        <strong>Adres:</strong> {{apartment.address}}
       </div>
+      <div class="detail-item">
+        <strong>Notatka:</strong> {{apartment.note}}
+      </div>
+      <!-- Add other details here -->
     </div>
-
-    
   </div>
-  
+</div>
