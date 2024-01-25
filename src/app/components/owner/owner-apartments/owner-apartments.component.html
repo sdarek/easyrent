@@ -1,9 +1,9 @@
 <!-- owner-apartments.component.html -->
 <div class="apartments">
-  <div *ngIf="apartments.length > 0; else noApartments">
+  <div *ngIf="!apartments.empty; else noApartments">
     <h1>Twoje mieszkania</h1>
-    <div *ngFor="let apartment of apartments" class="apartment" (click)="onApartmentClick(apartment.id)">
-      <h2>Miezkanie</h2>
+    <div *ngFor="let apartment of apartments.content" class="apartment" (click)="onApartmentClick(apartment.id)">
+      <h2>Mieszkanie</h2>
       <p>Adresa: {{ apartment.address }}</p>
       <p>Informacje: {{ apartment.note }}</p>
       <button (click)="deleteApartment($event, apartment.id)">Usuń mieszkanie</button>

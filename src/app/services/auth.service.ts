@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { User } from '../interfaces/auth-token';
 import { RegistrationForm } from 'src/app/interfaces/registration-form';
 import { LoginForm } from '../interfaces/login-form';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +28,24 @@ export class AuthService {
   }
 
   registerUser(userDetails: RegistrationForm): Observable<any> {
-    const endpoint = userDetails.role === 'owner' ? 'register_owner' : 'register_tenant';
-    const url = `${this.baseUrl}/easyrent-api/v1/${endpoint}`;
+    const url = `${this.baseUrl}/easyrent-api/v1/register_owner`;
     return this.http.post(url, userDetails);
+  }
+
+  registerTenant(userDetails: RegistrationForm): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    const url = `${this.baseUrl}/easyrent-api/v1/register_tenant`;
+    return this.http.post(url, userDetails, { headers }).pipe(
+      tap((response: any) => {
+        if (response && response.id) {
+          localStorage.setItem('residentUserId', response.id);
+        }
+      })
+    );
   }
   
   loginUser(loginForm: LoginForm) {

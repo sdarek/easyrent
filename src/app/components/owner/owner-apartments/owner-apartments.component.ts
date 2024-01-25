@@ -11,10 +11,8 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./owner-apartments.component.css']
 })
 export class OwnerApartmentsComponent implements OnInit {
-  apartments: any[] = [];
+  apartments: any = {};
   newApartment: any = { address: '', note: '' };
-  rentContracts: any[] = [];
-  tenants: any[] = [];
   constructor(
     private router: Router, 
     private apartmentService: ApartmentService,
@@ -29,8 +27,8 @@ export class OwnerApartmentsComponent implements OnInit {
     this.apartmentService.getApartments().subscribe(
       (response: any) => {
         // Sprawdź czy dane istnieją i czy zawierają content
-        if (response && response.content) {
-          this.apartments = response.content;
+        if (response) {
+          this.apartments = response;
         }
       },
       (error) => {
@@ -42,7 +40,6 @@ export class OwnerApartmentsComponent implements OnInit {
   
 
   addApartment(): void {
-    console.log(this.newApartment);
     this.apartmentService.addApartment(this.newApartment).subscribe(
       (response: any) => {
         this.msgService.add({ severity: 'success', summary: 'Sukces', detail: 'Mieszkanie dodano pomyślnie' });
