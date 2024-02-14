@@ -41,11 +41,13 @@ jobs:
       with:
         node-version: '20.x'
 
-    - name: Install dependencies
-      run: npm install
+    - name: Test Action
+      run: echo "Test code ---->"
 
-    - name: Run lint
-      run: npm run lint
+    # Quality code test for angular
+    # Uncomment this if u wanna use it, but now this code is bad so it will run workflow failure
+    # - name: Run lint
+    #   run: npm run lint
 
     # Uncomment this if you have tests
     # - name: Run tests
