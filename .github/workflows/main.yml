@@ -1,0 +1,73 @@
+name: Angular CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20.x'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build the project
+      run: npm run build -- --prod
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: angular-artifacts
+        path: dist/
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20.x'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run lint
+      run: npm run lint
+
+    # Uncomment this if you have tests
+    # - name: Run tests
+    #   run: npm test
+
+  # Example of how you might start preparing for a deploy to AWS Beanstalk
+  # This job assumes you have Jenkins or another system ready to deploy the artifact
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'  # Ensures this runs only on main branch
+
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: angular-artifacts
+
+    - name: Zip the artifact for deployment
+      run: zip -r angular-app.zip ./angular-artifacts
+
+    # Here you would add a step to upload the zip to an S3 bucket, or trigger Jenkins
+    # This is a placeholder step for illustration
+    - name: Deploy to AWS Elastic Beanstalk
+      run: echo "Deploying to AWS Elastic Beanstalk"
+      # Actual deployment steps would go here, such as using AWS CLI or triggering Jenkins
