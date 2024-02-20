@@ -1,7 +1,7 @@
 # EasyRent FrontEnd Documentation
 
 ## 1. GitHub Repository
-- Repository Link: [EasyRent FrontEnd](https://github.com/mshestalyuk/easyrent)
+- Repository Link: [EasyRent FrontEnd](https://github.com/sdarek/easyrent)
 - Repository Link: [EasyRent BackEnd](https://github.com/ZakharSytoi/EasyRentApplication)
 ## 2. Starting up the Application
 **Prerequisites:**
@@ -12,7 +12,7 @@
 
 **Steps:**
 1. **Clone the repository:**  
-```git clone https://github.com/mshestalyuk/easyrent.git```
+```git clone https://github.com/sdarek/easyrent.git```
 2. **Navigate to the directory:**  
 ```cd easyrent/```
 3. **Build docker file:**  
@@ -39,5 +39,39 @@ This will open the app in the browser at http://localhost:8080/.
 - **Truong Tra My**
 - **Zakhar Sytoi** [BackEnd Developer]
 
+## 5. Screenshots
+1. **Main Page**
+![Main Page](src/assets/img/main.png)
 
+2. **Account Information and Edit**
+![Account Information](src/assets/img/account.png)
 
+3. **Adding Apartment**
+![Adding Apartment](src/assets/img/add_apartment.png)
+
+4. **Welcome Dashboard**
+![Welcome Dashboard](src/assets/img/admin_hello.png)
+
+5. **Apartment Details and Tenant Management**
+![Apartment Details](src/assets/img/apartment.png)
+
+6. **Contract Details and Tenant List**
+![Contract Details](src/assets/img/apartment2.png)
+
+7. **First Steps Info**
+![First Steps](src/assets/img/firststep.png)
+
+8. **Login Form**
+![Login Form](src/assets/img/login.png)
+
+9. **Registration Form**
+![Registration Form](src/assets/img/register.png)
+
+10. **Reports in Owner's Panel**
+ ![Reports](src/assets/img/reports.png)
+
+11. **Tenant's Apartment Information**
+ ![Tenant Apartment](src/assets/img/tenant_apartment.png)
+
+12. **Tenant Apartment Details**
+ ![Tenant Apartment Details](src/assets/img/tenant_apartment_details.png)
